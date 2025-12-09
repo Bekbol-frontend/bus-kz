@@ -16,6 +16,9 @@ import dayjs from "dayjs";
 import { StepEnum } from "@/shared/constants";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "@/shared/config/router";
+import { useQuery } from "@tanstack/react-query";
+import { homeService } from "../../model/services";
+import { queryKeys } from "@/shared/constants/queryKeys";
 
 type ValueTypeState = string | undefined;
 
@@ -32,8 +35,20 @@ function SearchingTicket() {
   const [fromVal, setFromVal] = useState<ValueTypeState>(from);
   const [toVal, setToVal] = useState<ValueTypeState>(to);
   const [dateVal, setDateVal] = useState<ValueTypeState>(date);
+  const [cityEnabled, setCityEnabled] = useState(false)
 
   const navigate = useNavigate();
+  const { i18n } = useTranslation()
+
+  const { data, isLoading } = useQuery({
+    queryKey: [queryKeys.city, i18n.language],
+    queryFn: homeService.getCity,
+    enabled: cityEnabled
+  })
+
+  const changeCityEnabled = useCallback(() => {
+    setCityEnabled(true)
+  }, [])
 
   const onChangeFrom = useCallback((value: ValueTypeState) => {
     setFromVal(value);
@@ -101,20 +116,8 @@ function SearchingTicket() {
               className={styles.blockItem}
               value={fromVal}
               onChange={onChangeFrom}
-              options={[
-                {
-                  value: "almaty",
-                  label: "Алматы",
-                },
-                {
-                  value: "astana",
-                  label: "Астана",
-                },
-                {
-                  value: "moscow",
-                  label: "Москва",
-                },
-              ]}
+              onClick={changeCityEnabled}
+              loading={isLoading}
             />
           </Col>
           <Col span={6}>
@@ -125,20 +128,8 @@ function SearchingTicket() {
               className={styles.blockItem}
               value={toVal}
               onChange={onChangeTo}
-              options={[
-                {
-                  value: "almaty",
-                  label: "Алматы",
-                },
-                {
-                  value: "astana",
-                  label: "Астана",
-                },
-                {
-                  value: "moscow",
-                  label: "Москва",
-                },
-              ]}
+              onClick={changeCityEnabled}
+              loading={isLoading}
             />
           </Col>
           <Col span={6}>
