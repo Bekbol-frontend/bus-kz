@@ -1,0 +1,9 @@
+.header {
+  border-bottom: 1px solid var(--color-gray);
+  padding: var(--space-sm) 0 !important;
+  line-height: normal !important;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

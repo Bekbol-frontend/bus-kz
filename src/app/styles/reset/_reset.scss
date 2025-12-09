@@ -1,0 +1,15 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 25px;
+}
