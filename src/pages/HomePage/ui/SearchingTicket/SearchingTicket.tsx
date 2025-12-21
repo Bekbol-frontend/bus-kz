@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import {
   Button,
   Card,
@@ -8,6 +8,7 @@ import {
   Select,
   type DatePickerProps,
   notification,
+  type GetRef,
 } from "antd";
 import styles from "./SearchingTicket.module.scss";
 import { useTranslation } from "react-i18next";
@@ -106,6 +107,9 @@ function SearchingTicket() {
     });
   }, [api, fromVal, toVal, dateVal, navigate]);
 
+  const selectRefFrom = useRef<GetRef<typeof Select>>(null);
+  const selectRefFromTo = useRef<GetRef<typeof Select>>(null);
+
   return (
     <>
       {contextHolder}
@@ -113,13 +117,15 @@ function SearchingTicket() {
         <Row gutter={[10, 10]} className={styles.rowWrapper}>
           <Col sm={6} xs={24}>
             <Select
+              ref={selectRefFrom}
+              onSelect={() => selectRefFrom.current?.blur()}
               showSearch={{ optionFilterProp: "label" }}
               placeholder={t("From")}
-              
+              allowClear
               className={styles.blockItem}
               value={fromVal}
               onChange={onChangeFrom}
-              onClick={changeCityEnabled}
+              onFocus={changeCityEnabled}
               loading={isLoading}
               getPopupContainer={(trigger) => trigger.parentElement}
               options={data?.data.map((el) => ({
@@ -130,13 +136,15 @@ function SearchingTicket() {
           </Col>
           <Col sm={6} xs={24}>
             <Select
+              ref={selectRefFromTo}
+              onSelect={() => selectRefFromTo.current?.blur()}
               showSearch={{ optionFilterProp: "label" }}
               placeholder={t("To")}
-              
+              allowClear
               className={styles.blockItem}
               value={toVal}
               onChange={onChangeTo}
-              onClick={changeCityEnabled}
+              onFocus={changeCityEnabled}
               loading={isLoading}
               getPopupContainer={(trigger) => trigger.parentElement}
               options={data?.data.map((el) => ({
