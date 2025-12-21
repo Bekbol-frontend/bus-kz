@@ -4,9 +4,10 @@
   "To": "Қайда",
   "Select date": "Күнді таңдаңыз",
   "Find a ticket": "Билет табыңыз",
-  "Brand": "Бренд",
+
   "km": "км",
-  "hours": "сағат",
+  "hours": "сағ",
+  "minutes": "мин",
   "Seat type": "Орын түрі",
   "Model": "Үлгі",
   "Seats count": "Орындар саны",

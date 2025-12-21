@@ -49,7 +49,7 @@ function SearchPage() {
       </Section>
     );
   }
-  if (!data?.data.length)
+  if (!data || !data?.data.length)
     return (
       <Section className={styles.section}>
         <Container>

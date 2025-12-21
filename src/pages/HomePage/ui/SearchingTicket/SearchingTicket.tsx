@@ -68,7 +68,12 @@ function SearchingTicket() {
   );
 
   const disabledDate = useCallback((current: dayjs.Dayjs) => {
-    return current && current < dayjs().startOf("day");
+    if (!current) return false;
+
+    const today = dayjs().startOf("day");
+    const twoMonthsLater = dayjs().add(2, "month").endOf("day");
+
+    return current < today || current > twoMonthsLater;
   }, []);
 
   const onClickSearch = useCallback(() => {

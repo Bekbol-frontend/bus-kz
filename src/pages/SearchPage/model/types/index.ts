@@ -1,11 +1,12 @@
 interface TripRoute {
-  fromCity: string;
-  toCity: string;
-  fromStation: string;
-  toStation: string;
+  arrivalTime: string;
   departureTime: string;
-  duration: string;
   distanceKm: number;
+  duration: string;
+  fromCity: string;
+  fromStation: string;
+  toCity: string;
+  toStation: string;
 }
 
 interface IBus {

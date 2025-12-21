@@ -1,14 +1,48 @@
 .card {
-  .flex {
-    display: inline-flex;
-    margin-block: var(--space-sm);
+  .notMargin {
+    margin-bottom: 0;
+  }
 
-    div {
-      margin: 0;
+  .wrapperSpan {
+    .spanTime {
+      font-weight: 700;
+      font-size: 22px;
+      padding-right: 7px;
+
+      @media screen and (max-width: 768px) {
+        display: block;
+        font-size: 17px;
+      }
+    }
+
+    .dateSpan {
+      font-size: 15px;
+      color: var(--color-gray-2);
+
+      @media screen and (max-width: 768px) {
+        display: block;
+        font-size: 13px;
+      }
     }
   }
 
-  .price {
-    margin-bottom: 0;
+  .descStantion {
+    @media screen and (max-width: 768px) {
+      font-size: 14px !important;
+    }
+  }
+
+  .innerFlex {
+    @media screen and (max-width: 768px) {
+      flex: 1 !important;
+    }
+  }
+
+  .flexRight {
+    @media screen and (max-width: 768px) {
+      * {
+        text-align: right !important;
+      }
+    }
   }
 }

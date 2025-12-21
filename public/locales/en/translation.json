@@ -4,9 +4,10 @@
   "To": "To",
   "Select date": "Select date",
   "Find a ticket": "Find a ticket",
-  "Brand": "Brand",
+ 
   "km": "km",
-  "hours": "hours",
+  "hours": "h",
+  "minutes": "min",
   "Seat type": "Seat type",
   "Model": "Model",
   "Seats count": "Seats count",
