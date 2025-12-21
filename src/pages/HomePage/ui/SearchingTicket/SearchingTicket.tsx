@@ -115,7 +115,7 @@ function SearchingTicket() {
             <Select
               showSearch={{ optionFilterProp: "label" }}
               placeholder={t("From")}
-              allowClear
+              
               className={styles.blockItem}
               value={fromVal}
               onChange={onChangeFrom}
@@ -132,7 +132,7 @@ function SearchingTicket() {
             <Select
               showSearch={{ optionFilterProp: "label" }}
               placeholder={t("To")}
-              allowClear
+              
               className={styles.blockItem}
               value={toVal}
               onChange={onChangeTo}
