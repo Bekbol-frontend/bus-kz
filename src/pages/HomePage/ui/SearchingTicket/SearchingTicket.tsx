@@ -121,6 +121,7 @@ function SearchingTicket() {
               onChange={onChangeFrom}
               onClick={changeCityEnabled}
               loading={isLoading}
+              getPopupContainer={(trigger) => trigger.parentElement}
               options={data?.data.map((el) => ({
                 label: el.name,
                 value: el.code,
@@ -137,6 +138,7 @@ function SearchingTicket() {
               onChange={onChangeTo}
               onClick={changeCityEnabled}
               loading={isLoading}
+              getPopupContainer={(trigger) => trigger.parentElement}
               options={data?.data.map((el) => ({
                 label: el.name,
                 value: el.code,
