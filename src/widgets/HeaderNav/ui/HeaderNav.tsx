@@ -2,10 +2,7 @@ import { Flex, Layout } from "antd";
 import { Container } from "@/shared/ui/Container";
 import { Logo } from "@/shared/ui/Logo";
 import styles from "./HeaderNav.module.scss";
-import { NavLink } from "react-router-dom";
-import { FieldTimeOutlined } from "@ant-design/icons";
 import { SwitchLang } from "@/shared/ui/SwitchLang";
-import { appRoutes } from "@/shared/config/router";
 
 const { Header } = Layout;
 
@@ -18,10 +15,6 @@ function HeaderNav() {
             <Logo />
           </Flex>
           <Flex align="center" gap={16}>
-            <NavLink to={appRoutes.home}>
-              <FieldTimeOutlined /> Расписание маршрутов
-            </NavLink>
-
             <SwitchLang />
           </Flex>
         </Flex>
