@@ -110,8 +110,8 @@ function SearchingTicket() {
     <>
       {contextHolder}
       <Card className={styles.cardWrapper}>
-        <Row gutter={5} className={styles.rowWrapper}>
-          <Col span={6}>
+        <Row gutter={[10, 10]} className={styles.rowWrapper}>
+          <Col sm={6} xs={24}>
             <Select
               showSearch={{ optionFilterProp: "label" }}
               placeholder={t("From")}
@@ -127,7 +127,7 @@ function SearchingTicket() {
               }))}
             />
           </Col>
-          <Col span={6}>
+          <Col sm={6} xs={24}>
             <Select
               showSearch={{ optionFilterProp: "label" }}
               placeholder={t("To")}
@@ -143,7 +143,7 @@ function SearchingTicket() {
               }))}
             />
           </Col>
-          <Col span={6}>
+          <Col sm={6} xs={24}>
             <DatePicker
               placeholder={t("Select date")}
               format="YYYY.MM.DD"
@@ -153,7 +153,7 @@ function SearchingTicket() {
               disabledDate={disabledDate}
             />
           </Col>
-          <Col span={6}>
+          <Col sm={6} xs={24}>
             <Button
               type="primary"
               className={styles.blockItem}
