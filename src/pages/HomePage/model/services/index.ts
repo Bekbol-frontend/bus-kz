@@ -1,9 +1,10 @@
 import API from "@/shared/api";
+import type { ICity } from "../types";
 
 class HomeServices {
-    async getCity() {
-        return await API.get("/api/v1/City")
-    }
+  async getCity() {
+    return await API.get<ICity[]>("/api/v1/City");
+  }
 }
 
-export const homeService = new HomeServices()
+export const homeService = new HomeServices();

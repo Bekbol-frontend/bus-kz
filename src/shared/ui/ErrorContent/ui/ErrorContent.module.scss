@@ -1,0 +1,8 @@
+.errorContentWrapper {
+  padding: var(--space-lg);
+  text-align: center;
+
+  @media screen and (max-width: 768px) {
+    padding: var(--space-md);
+  }
+}

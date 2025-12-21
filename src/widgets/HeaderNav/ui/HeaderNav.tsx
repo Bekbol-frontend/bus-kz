@@ -19,7 +19,7 @@ function HeaderNav() {
           </Flex>
           <Flex align="center" gap={16}>
             <NavLink to={appRoutes.home}>
-              <FieldTimeOutlined /> Расписание поездов
+              <FieldTimeOutlined /> Расписание маршрутов
             </NavLink>
 
             <SwitchLang />

@@ -19,6 +19,9 @@ function AppConfigProvider({ children }: IProps) {
             headerBg: "var(--color-white)",
             headerHeight: "var(--header-height)",
           },
+          Button: {
+            controlHeight:  37
+          }
         },
       }}
     >

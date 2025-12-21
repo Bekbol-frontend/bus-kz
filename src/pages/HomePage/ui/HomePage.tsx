@@ -15,9 +15,7 @@ function HomePage() {
     <Section>
       <Container>
         <Title className={styles.title}>{t("Buy or book tickets")}</Title>
-
         <SearchingTicket />
-
         <StepsTicket />
       </Container>
     </Section>

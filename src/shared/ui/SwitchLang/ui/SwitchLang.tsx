@@ -5,16 +5,16 @@ import { useTranslation } from "react-i18next";
 
 const items: MenuProps["items"] = [
   {
-    label: "English",
-    key: "en",
+    label: "Қазақша",
+    key: "kz",
   },
   {
     label: "Русский",
     key: "ru",
   },
   {
-    label: "Қазақша",
-    key: "kz",
+    label: "English",
+    key: "en",
   },
 ];
 

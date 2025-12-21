@@ -1,3 +1,4 @@
 export const queryKeys = {
-    city: "city"
-}
+  city: "city",
+  tripSearch: "tripSearch",
+};

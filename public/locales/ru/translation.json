@@ -3,5 +3,12 @@
   "From": "Откуда",
   "To": "Куда",
   "Select date": "Выберите дату",
-  "Find a ticket": "Найти билет"
+  "Find a ticket": "Найти билет",
+  "Brand": "Бренд",
+  "km": "км",
+  "hours": "часы",
+  "Seat type": "Тип места",
+  "Model": "Модель",
+  "Seats count": "Количество мест",
+  "Price": "Цена"
 }

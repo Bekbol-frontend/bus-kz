@@ -1,0 +1,11 @@
+.section {
+  min-height: 70vh;
+}
+
+.secionLoading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm);
+  min-height: 70vh;
+}

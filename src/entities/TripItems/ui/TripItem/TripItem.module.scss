@@ -1,0 +1,14 @@
+.card {
+  .flex {
+    display: inline-flex;
+    margin-block: var(--space-sm);
+
+    div {
+      margin: 0;
+    }
+  }
+
+  .price {
+    margin-bottom: 0;
+  }
+}

@@ -3,5 +3,12 @@
   "From": "From",
   "To": "To",
   "Select date": "Select date",
-  "Find a ticket": "Find a ticket"
+  "Find a ticket": "Find a ticket",
+  "Brand": "Brand",
+  "km": "km",
+  "hours": "hours",
+  "Seat type": "Seat type",
+  "Model": "Model",
+  "Seats count": "Seats count",
+  "Price": "Price"
 }

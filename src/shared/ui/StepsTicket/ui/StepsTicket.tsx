@@ -19,7 +19,7 @@ const items = [
 
 function StepsTicket() {
   const { searchParams } = useAppContext();
-  const current = Number(searchParams.get(StepEnum.STEP)) || 0;
+  const current = Number(searchParams.get(StepEnum.STEP));
 
   return (
     <Card>

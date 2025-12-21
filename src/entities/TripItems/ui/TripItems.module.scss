@@ -1,0 +1,7 @@
+.wrapper {
+  padding: var(--space-lg) 0px;
+
+  @media screen and (max-width: 768px) {
+    padding: var(--space-md) 0px;
+  }
+}

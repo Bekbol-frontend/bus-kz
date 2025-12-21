@@ -19,36 +19,34 @@ import { appRoutes } from "@/shared/config/router";
 import { useQuery } from "@tanstack/react-query";
 import { homeService } from "../../model/services";
 import { queryKeys } from "@/shared/constants/queryKeys";
+import { useStepParams } from "@/shared/lib/hooks/useStepParams";
 
 type ValueTypeState = string | undefined;
 
 function SearchingTicket() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [api, contextHolder] = notification.useNotification();
 
   const { searchParams, setSearchParams } = useAppContext();
 
-  const from = searchParams.get(StepEnum.FROM) || undefined;
-  const to = searchParams.get(StepEnum.TO) || undefined;
-  const date = searchParams.get(StepEnum.DATE) || undefined;
+  const { from, to, date } = useStepParams();
 
   const [fromVal, setFromVal] = useState<ValueTypeState>(from);
   const [toVal, setToVal] = useState<ValueTypeState>(to);
   const [dateVal, setDateVal] = useState<ValueTypeState>(date);
-  const [cityEnabled, setCityEnabled] = useState(false)
+  const [cityEnabled, setCityEnabled] = useState(false);
 
   const navigate = useNavigate();
-  const { i18n } = useTranslation()
 
   const { data, isLoading } = useQuery({
     queryKey: [queryKeys.city, i18n.language],
     queryFn: homeService.getCity,
-    enabled: cityEnabled
-  })
+    enabled: cityEnabled,
+  });
 
   const changeCityEnabled = useCallback(() => {
-    setCityEnabled(true)
-  }, [])
+    setCityEnabled(true);
+  }, []);
 
   const onChangeFrom = useCallback((value: ValueTypeState) => {
     setFromVal(value);
@@ -61,7 +59,7 @@ function SearchingTicket() {
   const onChangeDate: DatePickerProps["onChange"] = useCallback(
     (value: dayjs.Dayjs | null) => {
       if (value) {
-        setDateVal(dayjs(value).format("YYYY-MM-DD"));
+        setDateVal(dayjs(value).format("YYYY.MM.DD"));
       } else {
         setDateVal(undefined);
       }
@@ -88,12 +86,12 @@ function SearchingTicket() {
       return;
     }
 
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams);
 
-    params.append(StepEnum.FROM, fromVal);
-    params.append(StepEnum.TO, toVal);
-    params.append(StepEnum.DATE, dateVal);
-    params.append(StepEnum.STEP, "1");
+    params.set(StepEnum.FROM, fromVal);
+    params.set(StepEnum.TO, toVal);
+    params.set(StepEnum.DATE, dateVal);
+    params.set(StepEnum.STEP, "1");
 
     setSearchParams(params);
 
@@ -118,6 +116,10 @@ function SearchingTicket() {
               onChange={onChangeFrom}
               onClick={changeCityEnabled}
               loading={isLoading}
+              options={data?.data.map((el) => ({
+                label: el.name,
+                value: el.code,
+              }))}
             />
           </Col>
           <Col span={6}>
@@ -130,6 +132,10 @@ function SearchingTicket() {
               onChange={onChangeTo}
               onClick={changeCityEnabled}
               loading={isLoading}
+              options={data?.data.map((el) => ({
+                label: el.name,
+                value: el.code,
+              }))}
             />
           </Col>
           <Col span={6}>
