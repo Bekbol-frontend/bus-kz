@@ -1,0 +1,7 @@
+.wrapper {
+  gap: 10px;
+
+  @media screen and (max-width: 768px) {
+    flex: 1 !important;
+  }
+}

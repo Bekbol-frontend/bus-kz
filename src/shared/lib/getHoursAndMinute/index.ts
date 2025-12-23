@@ -11,5 +11,5 @@ export function getHoursAndMinute(departureTime: string, arrivalTime: string) {
   return {
     hours: hours,
     minutes: minutes,
-  };
+  };  
 }

@@ -1,0 +1,41 @@
+.wrapper {
+  flex: 2 !important;
+
+  &.positionRight {
+    @media screen and (max-width: 768px) {
+      text-align: right;
+    }
+  }
+
+  .wrapperSpan {
+    .spanTime {
+      font-weight: 700;
+      font-size: 22px;
+      padding-right: 7px;
+
+      @media screen and (max-width: 768px) {
+        display: block;
+        font-size: 17px;
+      }
+    }
+
+    .dateSpan {
+      font-size: 15px;
+      color: var(--color-gray-2);
+
+      @media screen and (max-width: 768px) {
+        display: block;
+        font-size: 13px;
+      }
+    }
+  }
+
+  .descStantion {
+    margin: 0px;
+    font-size: 13px;
+
+    @media screen and (max-width: 768px) {
+      font-size: 12px !important;
+    }
+  }
+}

@@ -1,7 +1,11 @@
-function TripDistanceIcon() {
+interface IProps {
+  width: number;
+}
+
+function TripDistanceIcon({ width }: IProps) {
   return (
     <svg
-      width="118"
+      width={width}
       height="6"
       viewBox="0 0 118 6"
       fill="none"

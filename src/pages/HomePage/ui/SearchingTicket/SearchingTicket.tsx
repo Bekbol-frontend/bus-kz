@@ -1,14 +1,12 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import {
   Button,
   Card,
   Col,
   DatePicker,
   Row,
-  Select,
   type DatePickerProps,
   notification,
-  type GetRef,
 } from "antd";
 import styles from "./SearchingTicket.module.scss";
 import { useTranslation } from "react-i18next";
@@ -21,6 +19,7 @@ import { useQuery } from "@tanstack/react-query";
 import { homeService } from "../../model/services";
 import { queryKeys } from "@/shared/constants/queryKeys";
 import { useStepParams } from "@/shared/lib/hooks/useStepParams";
+import TicketSelect from "./TicketSelect/TicketSelect";
 
 type ValueTypeState = string | undefined;
 
@@ -105,10 +104,7 @@ function SearchingTicket() {
       pathname: appRoutes.search,
       search: params.toString(),
     });
-  }, [api, fromVal, toVal, dateVal, navigate]);
-
-  const selectRefFrom = useRef<GetRef<typeof Select>>(null);
-  const selectRefFromTo = useRef<GetRef<typeof Select>>(null);
+  }, [api, fromVal, navigate, searchParams, toVal, dateVal]);
 
   return (
     <>
@@ -116,41 +112,23 @@ function SearchingTicket() {
       <Card className={styles.cardWrapper}>
         <Row gutter={[10, 10]} className={styles.rowWrapper}>
           <Col sm={6} xs={24}>
-            <Select
-              ref={selectRefFrom}
-              onSelect={() => selectRefFrom.current?.blur()}
-              showSearch={{ optionFilterProp: "label" }}
-              placeholder={t("From")}
-              allowClear
-              className={styles.blockItem}
-              value={fromVal}
+            <TicketSelect
+              placeholder="From"
+              fromVal={fromVal}
               onChange={onChangeFrom}
-              onFocus={changeCityEnabled}
-              loading={isLoading}
-              getPopupContainer={(trigger) => trigger.parentElement}
-              options={data?.data.map((el) => ({
-                label: el.name,
-                value: el.code,
-              }))}
+              changeCityEnabled={changeCityEnabled}
+              isLoading={isLoading}
+              data={data?.data}
             />
           </Col>
           <Col sm={6} xs={24}>
-            <Select
-              ref={selectRefFromTo}
-              onSelect={() => selectRefFromTo.current?.blur()}
-              showSearch={{ optionFilterProp: "label" }}
-              placeholder={t("To")}
-              allowClear
-              className={styles.blockItem}
-              value={toVal}
+            <TicketSelect
+              placeholder="To"
+              fromVal={toVal}
               onChange={onChangeTo}
-              onFocus={changeCityEnabled}
-              loading={isLoading}
-              getPopupContainer={(trigger) => trigger.parentElement}
-              options={data?.data.map((el) => ({
-                label: el.name,
-                value: el.code,
-              }))}
+              changeCityEnabled={changeCityEnabled}
+              isLoading={isLoading}
+              data={data?.data}
             />
           </Col>
           <Col sm={6} xs={24}>
