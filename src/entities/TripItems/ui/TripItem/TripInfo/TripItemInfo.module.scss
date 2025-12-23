@@ -1,41 +1,45 @@
 .wrapper {
-  flex: 2 !important;
+  text-align: center;
+  align-self: flex-start;
 
   &.positionRight {
     @media screen and (max-width: 768px) {
-      text-align: right;
     }
   }
 
   .wrapperSpan {
+    @media screen and (max-width: 768px) {
+      margin-bottom: var(--space-xs-xs);
+    }
+
     .spanTime {
       font-weight: 700;
-      font-size: 22px;
-      padding-right: 7px;
+      font-size: var(--font-size-desc-xl);
+      padding-right: var(--space-xs-xs);
 
       @media screen and (max-width: 768px) {
         display: block;
-        font-size: 17px;
+        font-size: var(--font-size-desc-md);
+        padding: 0;
       }
     }
 
     .dateSpan {
-      font-size: 15px;
+      font-size: var(--font-size-desc-sm);
       color: var(--color-gray-2);
 
       @media screen and (max-width: 768px) {
         display: block;
-        font-size: 13px;
+        font-size: var(--font-size-desc-xs);
       }
     }
   }
 
   .descStantion {
     margin: 0px;
-    font-size: 13px;
 
     @media screen and (max-width: 768px) {
-      font-size: 12px !important;
+      font-size: var(--font-size-desc-sm);
     }
   }
 }

@@ -4,4 +4,14 @@
   @media screen and (max-width: 768px) {
     flex: 1 !important;
   }
+
+  span {
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-2);
+
+    @media screen and (max-width: 768px) {
+      display: block;
+      font-size: var(--font-size-xs);
+    }
+  }
 }

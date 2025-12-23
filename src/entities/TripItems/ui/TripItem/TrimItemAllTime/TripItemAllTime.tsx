@@ -21,6 +21,7 @@ function TripItemAllTime({ departureTime, arrivalTime }: IProps) {
       justify="center"
       gap={3}
       className={styles.wrapper}
+      flex={1}
     >
       <Flex gap={5} align="center">
         <span>
@@ -34,7 +35,7 @@ function TripItemAllTime({ departureTime, arrivalTime }: IProps) {
           </span>
         )}
       </Flex>
-      <TripDistanceIcon width={sm ? 120 : 70} />
+      <TripDistanceIcon width={sm ? 120 : 75} />
     </Flex>
   );
 }

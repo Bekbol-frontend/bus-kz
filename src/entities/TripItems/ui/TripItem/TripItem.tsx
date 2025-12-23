@@ -29,7 +29,7 @@ function TripItem({ data }: IProps) {
   return (
     <Col span={24}>
       <Card hoverable className={styles.card}>
-        <Flex vertical={!sm} justify="space-between">
+        <Flex vertical={!sm} justify="space-between" gap={20}>
           <Flex vertical>
             <Title level={4}>
               {brand} {model}
@@ -39,7 +39,12 @@ function TripItem({ data }: IProps) {
             </Paragraph>
           </Flex>
 
-          <Flex align="center" justify="space-between" gap={10}>
+          <Flex
+            align="center"
+            justify="space-between"
+            gap={10}
+            className={styles.right}
+          >
             <TripItemInfo time={departureTime} station={fromStation} />
 
             <TripItemAllTime

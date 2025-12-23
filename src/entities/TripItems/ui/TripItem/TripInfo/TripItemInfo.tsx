@@ -26,6 +26,7 @@ function TripItemInfo({ time, station, positionRight = false }: IProps) {
       className={clsx([styles.wrapper], {
         [styles.positionRight]: positionRight,
       })}
+      flex={1}
     >
       <div className={styles.wrapperSpan}>
         <span className={styles.spanTime}>{fromatTime}</span>
