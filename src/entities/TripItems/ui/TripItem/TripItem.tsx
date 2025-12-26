@@ -31,7 +31,7 @@ function TripItem({ data }: IProps) {
       <Card hoverable className={styles.card}>
         <Flex vertical={!sm} justify="space-between" gap={20}>
           <Flex vertical>
-            <Title level={4}>
+            <Title level={sm ? 4 : 5}>
               {brand} {model}
             </Title>
             <Paragraph type="secondary" className={styles.fromCityDesc}>
