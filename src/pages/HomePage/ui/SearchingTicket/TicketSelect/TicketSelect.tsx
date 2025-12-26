@@ -2,6 +2,7 @@ import { Select } from "antd";
 import { useTranslation } from "react-i18next";
 import styles from "./TicketSelect.module.scss";
 import type { ICity } from "@/pages/HomePage/model/types";
+import { useCallback, useState } from "react";
 
 interface IProps {
   placeholder: string;
@@ -15,12 +16,26 @@ interface IProps {
 function TicketSelect({
   placeholder,
   fromVal,
-  onChange: onChangeFrom,
+  onChange,
   changeCityEnabled,
   isLoading,
   data,
 }: IProps) {
   const { t } = useTranslation();
+  const [open, setOpen] = useState(false);
+
+  const onClick = useCallback(() => {
+    setOpen(true);
+    changeCityEnabled();
+  }, [changeCityEnabled]);
+
+  const onChangeSelect = useCallback(
+    (val: string) => {
+      setOpen(false);
+      onChange(val);
+    },
+    [onChange]
+  );
 
   return (
     <Select
@@ -29,13 +44,14 @@ function TicketSelect({
       allowClear
       className={styles.blockItem}
       value={fromVal}
-      onChange={onChangeFrom}
-      onFocus={changeCityEnabled}
+      onChange={(val) => onChangeSelect(val)}
+      onClick={onClick}
       loading={isLoading}
       options={data?.map((el) => ({
         label: el.name,
         value: el.code,
       }))}
+      open={open}
     />
   );
 }
