@@ -1,17 +1,12 @@
 import { queryKeys } from "@/shared/constants/queryKeys";
 import { useStepParams } from "@/shared/lib/hooks/useStepParams";
-import { Container } from "@/shared/ui/Container";
-import { Section } from "@/shared/ui/Section";
-import { StepsTicket } from "@/shared/ui/StepsTicket";
-import { ArrowLeftOutlined } from "@ant-design/icons";
 import { useQuery } from "@tanstack/react-query";
-import { Button, Spin } from "antd";
 import { useTranslation } from "react-i18next";
 import { getTripSearch } from "../model/services";
 import { EmptyData } from "@/shared/ui/EmptyData";
 import { ErrorContent } from "@/shared/ui/ErrorContent";
-import styles from "./SearchPage.module.scss";
 import { TripItems } from "@/entities/TripItems";
+import SearchPageWrapper from "./SearchPageWrapper/SearchPageWrapper";
 
 function SearchPage() {
   const { i18n } = useTranslation();
@@ -28,54 +23,29 @@ function SearchPage() {
   });
 
   if (isLoading) {
-    return (
-      <Section className={styles.secionLoading}>
-        <Spin size="large" />
-      </Section>
-    );
+    return <SearchPageWrapper loading={isLoading} />;
   }
+
   if (isError && error) {
     return (
-      <Section className={styles.section}>
-        <Container>
-          <Button type="primary" icon={<ArrowLeftOutlined />}>
-            Назад
-          </Button>
-
-          <ErrorContent title="error" />
-
-          <StepsTicket />
-        </Container>
-      </Section>
+      <SearchPageWrapper>
+        <ErrorContent title="error" />
+      </SearchPageWrapper>
     );
   }
-  if (!data || !data?.data.length)
+
+  if (!data || !data?.data.length) {
     return (
-      <Section className={styles.section}>
-        <Container>
-          <Button type="primary" icon={<ArrowLeftOutlined />}>
-            Назад
-          </Button>
-
-          <EmptyData />
-
-          <StepsTicket />
-        </Container>
-      </Section>
+      <SearchPageWrapper>
+        <EmptyData />
+      </SearchPageWrapper>
     );
+  }
 
   return (
-    <Section className={styles.section}>
-      <Container>
-        <Button type="primary" icon={<ArrowLeftOutlined />}>
-          Назад
-        </Button>
-
-        <TripItems data={data.data} />
-
-        <StepsTicket />
-      </Container>
-    </Section>
+    <SearchPageWrapper>
+      <TripItems data={data.data} />
+    </SearchPageWrapper>
   );
 }
 

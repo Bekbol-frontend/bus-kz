@@ -46,6 +46,11 @@ function TicketSelect({
       value={fromVal}
       onChange={(val) => onChangeSelect(val)}
       onClick={onClick}
+      onBlur={() => {
+        if (open) {
+          setOpen(false);
+        }
+      }}
       loading={isLoading}
       options={data?.map((el) => ({
         label: el.name,

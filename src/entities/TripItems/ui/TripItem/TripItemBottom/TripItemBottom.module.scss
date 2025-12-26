@@ -10,15 +10,24 @@
     border: 1px solid var(--color-gray);
 
     & > div {
-      padding: var(--space-xs) !important;
+      padding: var(--space-xs-xs) !important;
 
       .desc {
         margin-bottom: var(--space-xs-xs);
+
+        @media screen and (max-width: 768px) {
+          font-size: var(--font-size-desc-xs);
+          margin-bottom: var(--space-xs-xs);
+        }
       }
 
       .title {
         margin: 0;
         font-weight: var(--font-weight-400) !important;
+
+        @media screen and (max-width: 768px) {
+          font-size: var(--font-size-desc-sm);
+        }
       }
     }
   }
