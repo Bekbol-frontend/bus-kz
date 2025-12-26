@@ -34,7 +34,7 @@ function SearchPage() {
     );
   }
 
-  if (!data || !data?.data.length) {
+  if (!data?.data.length) {
     return (
       <SearchPageWrapper>
         <EmptyData />
