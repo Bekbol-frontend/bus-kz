@@ -1,6 +1,14 @@
 .card {
-  .fromCityDesc {
-    margin: 0;
+  .left {
+    .fromCityDesc {
+      margin: 0;
+    }
+
+    .title {
+      @media screen and (max-width: 768px) {
+        margin-bottom: 3px;
+      }
+    }
   }
 
   .right {

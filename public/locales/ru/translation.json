@@ -11,5 +11,6 @@
   "Seat type": "Тип места",
   "Model": "Модель",
   "Seats count": "Количество мест",
-  "Price": "Цена"
+  "Price": "Цена",
+  "Price from": "От"
 }

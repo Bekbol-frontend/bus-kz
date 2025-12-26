@@ -5,6 +5,7 @@ import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import TripItemInfo from "./TripInfo/TripItemInfo";
 import TripItemAllTime from "./TrimItemAllTime/TripItemAllTime";
 import styles from "./TripItem.module.scss";
+import TripItemBottom from "./TripItemBottom/TripItemBottom";
 
 const { Title, Paragraph } = Typography;
 
@@ -15,8 +16,8 @@ interface IProps {
 function TripItem({ data }: IProps) {
   const { sm } = useResponsive();
 
-  const { bus, route } = data;
-  const { brand, model } = bus;
+  const { bus, route, price } = data;
+  const { brand, model, seatType, seatsCount } = bus;
   const {
     fromCity,
     toCity,
@@ -30,8 +31,8 @@ function TripItem({ data }: IProps) {
     <Col span={24}>
       <Card hoverable className={styles.card}>
         <Flex vertical={!sm} justify="space-between" gap={20}>
-          <Flex vertical>
-            <Title level={sm ? 4 : 5}>
+          <Flex vertical className={styles.left}>
+            <Title level={sm ? 4 : 5} className={styles.title}>
               {brand} {model}
             </Title>
             <Paragraph type="secondary" className={styles.fromCityDesc}>
@@ -59,6 +60,11 @@ function TripItem({ data }: IProps) {
             />
           </Flex>
         </Flex>
+        <TripItemBottom
+          price={price}
+          seatsCount={seatsCount}
+          seatType={seatType}
+        />
       </Card>
     </Col>
   );

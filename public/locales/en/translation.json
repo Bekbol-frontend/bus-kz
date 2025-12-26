@@ -11,5 +11,7 @@
   "Seat type": "Seat type",
   "Model": "Model",
   "Seats count": "Seats count",
-  "Price": "Price"
+  "Price": "Price",
+
+  "Price from": "From"
 }
