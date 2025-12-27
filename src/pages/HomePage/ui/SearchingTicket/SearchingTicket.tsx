@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Button,
   Card,
@@ -11,7 +11,6 @@ import {
 import styles from "./SearchingTicket.module.scss";
 import { useTranslation } from "react-i18next";
 import { useAppContext } from "@/shared/lib/hooks/useAppContext";
-import dayjs from "dayjs";
 import { StepEnum } from "@/shared/constants";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "@/shared/config/router";
@@ -20,6 +19,14 @@ import { homeService } from "../../model/services";
 import { queryKeys } from "@/shared/constants/queryKeys";
 import { useStepParams } from "@/shared/lib/hooks/useStepParams";
 import TicketSelect from "./TicketSelect/TicketSelect";
+import dayjs from "dayjs";
+import "dayjs/locale/ru";
+import "dayjs/locale/kk";
+import "dayjs/locale/en";
+
+import ruLocale from "antd/es/date-picker/locale/ru_RU";
+import kkLocale from "antd/es/date-picker/locale/kk_KZ";
+import enLocale from "antd/es/date-picker/locale/en_US";
 
 type ValueTypeState = string | undefined;
 
@@ -106,6 +113,23 @@ function SearchingTicket() {
     });
   }, [api, fromVal, navigate, searchParams, toVal, dateVal]);
 
+  useEffect(() => {
+    dayjs.locale(i18n.language === "kz" ? "kk" : i18n.language);
+  }, [i18n]);
+
+  const displayDate = dateVal ? dayjs(dateVal, "YYYY.MM.DD") : null;
+
+  const getAntdLocale = useMemo(() => {
+    switch (i18n.language) {
+      case "ru":
+        return ruLocale;
+      case "kz":
+        return kkLocale;
+      default:
+        return enLocale;
+    }
+  }, [i18n]);
+
   return (
     <>
       {contextHolder}
@@ -134,11 +158,12 @@ function SearchingTicket() {
           <Col sm={6} xs={24}>
             <DatePicker
               placeholder={t("Select date")}
-              format="YYYY.MM.DD"
-              value={dateVal ? dayjs(dateVal, "YYYY-MM-DD") : null}
+              format="DD MMM, ddd"
+              value={displayDate}
               onChange={onChangeDate}
               className={styles.blockItem}
               disabledDate={disabledDate}
+              locale={getAntdLocale}
             />
           </Col>
           <Col sm={6} xs={24}>
