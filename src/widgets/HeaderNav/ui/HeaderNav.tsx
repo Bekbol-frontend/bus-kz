@@ -6,11 +6,13 @@ import { StepsTicket } from "@/shared/ui/StepsTicket";
 import { useLocation } from "react-router-dom";
 import { appRoutes } from "@/shared/config/router";
 import styles from "./HeaderNav.module.scss";
+import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 
 const { Header } = Layout;
 
 function HeaderNav() {
   const { pathname } = useLocation();
+  const { sm } = useResponsive();
 
   return (
     <Header className={styles.header}>
@@ -19,7 +21,7 @@ function HeaderNav() {
           <Flex>
             <Logo />
           </Flex>
-          {pathname !== appRoutes.home && <StepsTicket inHeader />}
+          {pathname !== appRoutes.home && sm && <StepsTicket inHeader />}
           <Flex align="center" gap={16}>
             <SwitchLang />
           </Flex>
