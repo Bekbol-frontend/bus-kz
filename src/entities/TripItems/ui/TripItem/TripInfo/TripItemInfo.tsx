@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import "dayjs/locale/ru";
 import "dayjs/locale/kk";
 import "dayjs/locale/en";
+import LocationImgStation from "@/shared/assets/location-img/location.png";
 
 const { Paragraph } = Typography;
 
@@ -36,10 +37,10 @@ function TripItemInfo({ time, station, positionRight = false }: IProps) {
             .format(i18n.language === "ru" ? "DD MMM dd" : "DD MMM. dd")}
         </span>
       </div>
-      <Paragraph
-        type="secondary"
-        className={clsx([styles.notMargin, styles.descStantion])}
-      >
+      <Paragraph type="secondary" className={styles.descStantion}>
+        <span>
+          <img src={LocationImgStation} alt="location" />
+        </span>
         {station}
       </Paragraph>
     </Flex>

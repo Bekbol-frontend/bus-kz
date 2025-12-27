@@ -17,9 +17,17 @@ const items = [
   },
 ];
 
-function StepsTicket() {
+interface IProps {
+  inHeader?: boolean;
+}
+
+function StepsTicket({ inHeader }: IProps) {
   const { searchParams } = useAppContext();
   const current = Number(searchParams.get(StepEnum.STEP));
+
+  if (inHeader) {
+    return <Steps current={current} items={items} />;
+  }
 
   return (
     <Card>

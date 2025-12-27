@@ -38,6 +38,18 @@
   .descStantion {
     margin: 0px;
 
+    & > span {
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
     @media screen and (max-width: 768px) {
       font-size: var(--font-size-desc-sm);
     }

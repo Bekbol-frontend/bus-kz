@@ -22,6 +22,8 @@ function SearchPage() {
     enabled: !!from && !!to && !!date,
   });
 
+  console.log(isLoading)
+
   if (isLoading) {
     return <SearchPageWrapper loading={isLoading} />;
   }

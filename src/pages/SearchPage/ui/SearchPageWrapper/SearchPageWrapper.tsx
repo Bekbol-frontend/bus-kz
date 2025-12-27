@@ -4,7 +4,6 @@ import styles from "./SearchPageWrapper.module.scss";
 import { Container } from "@/shared/ui/Container";
 import { Button, Spin } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
-import { StepsTicket } from "@/shared/ui/StepsTicket";
 import { useNavigate } from "react-router-dom";
 import { appRoutes } from "@/shared/config/router";
 
@@ -17,6 +16,7 @@ function SearchPageWrapper({ children, loading = false }: IProps) {
   const navigate = useNavigate();
 
   if (loading) {
+    console.log("Loading");
     return (
       <Section className={styles.secionLoading}>
         <Spin size="large" />
@@ -36,8 +36,6 @@ function SearchPageWrapper({ children, loading = false }: IProps) {
         </Button>
 
         {children}
-
-        <StepsTicket />
       </Container>
     </Section>
   );

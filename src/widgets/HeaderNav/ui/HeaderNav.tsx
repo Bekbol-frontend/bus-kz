@@ -1,12 +1,17 @@
 import { Flex, Layout } from "antd";
 import { Container } from "@/shared/ui/Container";
 import { Logo } from "@/shared/ui/Logo";
-import styles from "./HeaderNav.module.scss";
 import { SwitchLang } from "@/shared/ui/SwitchLang";
+import { StepsTicket } from "@/shared/ui/StepsTicket";
+import { useLocation } from "react-router-dom";
+import { appRoutes } from "@/shared/config/router";
+import styles from "./HeaderNav.module.scss";
 
 const { Header } = Layout;
 
 function HeaderNav() {
+  const { pathname } = useLocation();
+
   return (
     <Header className={styles.header}>
       <Container>
@@ -14,6 +19,7 @@ function HeaderNav() {
           <Flex>
             <Logo />
           </Flex>
+          {pathname !== appRoutes.home && <StepsTicket inHeader />}
           <Flex align="center" gap={16}>
             <SwitchLang />
           </Flex>
