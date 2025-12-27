@@ -6,14 +6,15 @@ import { getTripSearch } from "../model/services";
 import { EmptyData } from "@/shared/ui/EmptyData";
 import { ErrorContent } from "@/shared/ui/ErrorContent";
 import { TripItems } from "@/entities/TripItems";
-import SearchPageWrapper from "./SearchPageWrapper/SearchPageWrapper";
+import { LoadingPage } from "@/shared/ui/LoadingPage";
+import SearchPageLayout from "./SearchPageLayout/SearchPageLayout";
 
 function SearchPage() {
   const { i18n } = useTranslation();
   const { from, to, date } = useStepParams();
 
   const { data, isLoading, isError, error } = useQuery({
-    queryKey: [queryKeys.tripSearch, i18n.language],
+    queryKey: [queryKeys.tripSearch, i18n.language, from, to, date],
     queryFn: () => {
       if (from && to && date) {
         return getTripSearch(from, to, date);
@@ -22,32 +23,30 @@ function SearchPage() {
     enabled: !!from && !!to && !!date,
   });
 
-  console.log(isLoading)
-
   if (isLoading) {
-    return <SearchPageWrapper loading={isLoading} />;
+    return <LoadingPage />;
   }
 
   if (isError && error) {
     return (
-      <SearchPageWrapper>
+      <SearchPageLayout>
         <ErrorContent title="error" />
-      </SearchPageWrapper>
+      </SearchPageLayout>
     );
   }
 
   if (!data?.data.length) {
     return (
-      <SearchPageWrapper>
+      <SearchPageLayout>
         <EmptyData />
-      </SearchPageWrapper>
+      </SearchPageLayout>
     );
   }
 
   return (
-    <SearchPageWrapper>
+    <SearchPageLayout>
       <TripItems data={data.data} />
-    </SearchPageWrapper>
+    </SearchPageLayout>
   );
 }
 

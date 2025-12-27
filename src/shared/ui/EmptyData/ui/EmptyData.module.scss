@@ -1,5 +1,6 @@
 .emptyDataWrapper {
   padding: var(--space-lg);
+  height: 50vh;
 
   @media screen and (max-width: 768px) {
     padding: var(--space-sm);
