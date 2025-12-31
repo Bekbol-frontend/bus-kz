@@ -8,10 +8,15 @@ import { ErrorContent } from "@/shared/ui/ErrorContent";
 import { TripItems } from "@/entities/TripItems";
 import { LoadingPage } from "@/shared/ui/LoadingPage";
 import SearchPageLayout from "./SearchPageLayout/SearchPageLayout";
+import { Col, Row } from "antd";
+import styles from "./SearchPage.module.scss";
+import { SortTrip, SortTripEnum } from "@/entities/SortTrip";
+import { useState } from "react";
 
 function SearchPage() {
   const { i18n } = useTranslation();
   const { from, to, date } = useStepParams();
+  const [sort, setSort] = useState<SortTripEnum | "">("");
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: [queryKeys.tripSearch, i18n.language, from, to, date],
@@ -45,7 +50,14 @@ function SearchPage() {
 
   return (
     <SearchPageLayout>
-      <TripItems data={data.data} />
+      <Row className={styles.rowWrapper} gutter={[15, 15]}>
+        <Col span={6}>
+          <SortTrip sort={sort} setSort={setSort} />
+        </Col>
+        <Col span={18}>
+          <TripItems data={data.data} sort={sort} />
+        </Col>
+      </Row>
     </SearchPageLayout>
   );
 }

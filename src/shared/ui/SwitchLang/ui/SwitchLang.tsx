@@ -2,19 +2,20 @@ import { DownOutlined } from "@ant-design/icons";
 import type { MenuProps } from "antd";
 import { Button, Dropdown } from "antd";
 import { useTranslation } from "react-i18next";
+import { LangEnum } from "../types";
 
 const items: MenuProps["items"] = [
   {
     label: "Қазақша",
-    key: "kz",
+    key: LangEnum.KZ,
   },
   {
     label: "Русский",
-    key: "ru",
+    key: LangEnum.RU,
   },
   {
     label: "English",
-    key: "en",
+    key: LangEnum.EN,
   },
 ];
 

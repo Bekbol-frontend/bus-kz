@@ -1,0 +1,7 @@
+.rowWrapper {
+  padding-top: var(--space-lg);
+
+  @media screen and (max-width: 768px) {
+    padding-top: var(--space-sm);
+  }
+}

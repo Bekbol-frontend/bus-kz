@@ -19,6 +19,8 @@ import { homeService } from "../../model/services";
 import { queryKeys } from "@/shared/constants/queryKeys";
 import { useStepParams } from "@/shared/lib/hooks/useStepParams";
 import TicketSelect from "./TicketSelect/TicketSelect";
+import { LangEnum } from "@/shared/ui/SwitchLang";
+
 import dayjs from "dayjs";
 import "dayjs/locale/ru";
 import "dayjs/locale/kk";
@@ -121,9 +123,9 @@ function SearchingTicket() {
 
   const getAntdLocale = useMemo(() => {
     switch (i18n.language) {
-      case "ru":
+      case LangEnum.RU:
         return ruLocale;
-      case "kz":
+      case LangEnum.KZ:
         return kkLocale;
       default:
         return enLocale;

@@ -1,17 +1,37 @@
 import type { ITrip } from "@/pages/SearchPage/model/types";
 import { Row } from "antd";
-import styles from "./TripItems.module.scss";
 import TripItem from "./TripItem/TripItem";
+import { SortTripEnum } from "@/entities/SortTrip";
+import { useMemo } from "react";
 
 interface IProps {
   data: ITrip[];
+  sort: "" | SortTripEnum;
 }
 
-function TripItems({ data }: IProps) {
+function TripItems({ data, sort }: IProps) {
+  const sortedData = useMemo(() => {
+    if (sort === SortTripEnum.PRICE) {
+      return [...data].sort((a, b) => a.price - b.price);
+    }
+    if (sort === SortTripEnum.DEPARTURE_TIME) {
+      return [...data].sort((a, b) =>
+        a.route.departureTime.localeCompare(b.route.departureTime)
+      );
+    }
+    if (sort === SortTripEnum.ARRIVAL_TIME) {
+      return [...data].sort((a, b) =>
+        a.route.arrivalTime.localeCompare(b.route.arrivalTime)
+      );
+    }
+
+    return data;
+  }, [data, sort]);
+
   return (
-    <div className={styles.wrapper}>
+    <div>
       <Row gutter={[10, 10]}>
-        {data.map((el) => (
+        {sortedData.map((el) => (
           <TripItem data={el} key={el.tripId} />
         ))}
       </Row>
