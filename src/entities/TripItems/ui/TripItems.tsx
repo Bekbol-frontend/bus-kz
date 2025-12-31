@@ -14,6 +14,9 @@ function TripItems({ data, sort }: IProps) {
     if (sort === SortTripEnum.PRICE) {
       return [...data].sort((a, b) => a.price - b.price);
     }
+    if (sort === SortTripEnum.SEATS_COUNT) {
+      return [...data].sort((a, b) => a.bus.seatsCount - b.bus.seatsCount);
+    }
     if (sort === SortTripEnum.DEPARTURE_TIME) {
       return [...data].sort((a, b) =>
         a.route.departureTime.localeCompare(b.route.departureTime)

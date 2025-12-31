@@ -17,12 +17,28 @@ const { Title } = Typography;
 interface IProps {
   sort: string;
   setSort: Dispatch<SetStateAction<"" | SortTripEnum>>;
+  isMobile?: boolean;
+  onCloseDrawer?: () => void;
 }
 
-function SortTrip({ sort, setSort }: IProps) {
+function SortTrip({ sort, setSort, isMobile, onCloseDrawer }: IProps) {
   const onChange = ({ target: { value } }: RadioChangeEvent) => {
     setSort(value);
+    if (isMobile && onCloseDrawer) {
+      onCloseDrawer();
+    }
   };
+
+  if (isMobile) {
+    return (
+      <Radio.Group
+        value={sort}
+        options={sortOptionItems}
+        onChange={onChange}
+        vertical
+      />
+    );
+  }
 
   return (
     <Card>

@@ -13,4 +13,8 @@ export const sortOptionItems: ISortTripOption[] = [
     label: "Время прибытия",
     value: SortTripEnum.ARRIVAL_TIME,
   },
+  {
+    label: "Количество мест",
+    value: SortTripEnum.SEATS_COUNT,
+  },
 ];
