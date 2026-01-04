@@ -16,6 +16,7 @@ import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import SortAndDrawer from "./SortAndDrawer/SortAndDrawer";
 import { FilterTrip } from "@/entities/FilterTrip";
 import type { SeatTypeCodeEnum } from "../model/types";
+import FilterAndDrawer from "./FilterAndDrawer/FilterAndDrawer";
 
 function SearchPage() {
   const { i18n } = useTranslation();
@@ -23,14 +24,23 @@ function SearchPage() {
   const [sort, setSort] = useState<SortTripEnum | "">("");
   const [filter, setFilter] = useState<SeatTypeCodeEnum | "">("");
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [filterDrawer, setFilterDrawer] = useState(false);
   const { sm } = useResponsive();
 
   const showDrawer = useCallback(() => {
     setOpenDrawer(true);
   }, []);
 
+  const showFilterDrawer = useCallback(() => {
+    setFilterDrawer(true);
+  }, []);
+
   const onCloseDrawer = useCallback(() => {
     setOpenDrawer(false);
+  }, []);
+
+  const onCloseFilterDrawer = useCallback(() => {
+    setFilterDrawer(false);
   }, []);
 
   const { data, isLoading, isError, error } = useQuery({
@@ -79,8 +89,14 @@ function SearchPage() {
         {/* For Mobile */}
         {!sm && (
           <Col span={24}>
-            <Flex justify="space-between" align="center" gap={15}>
-              <FilterTrip filter={filter} setFilter={setFilter} isMobile />
+            <Flex gap={5}>
+              <FilterAndDrawer
+                filter={filter}
+                setFilter={setFilter}
+                showDrawer={showFilterDrawer}
+                openDrawer={filterDrawer}
+                onCloseDrawer={onCloseFilterDrawer}
+              />
               <SortAndDrawer
                 showDrawer={showDrawer}
                 onCloseDrawer={onCloseDrawer}

@@ -18,22 +18,26 @@ interface IProps {
   filter: "" | SeatTypeCodeEnum;
   setFilter: Dispatch<SetStateAction<"" | SeatTypeCodeEnum>>;
   isMobile?: boolean;
+  onCloseDrawer?: () => void;
 }
 
-function FilterTrip({ filter, setFilter, isMobile }: IProps) {
+function FilterTrip({ filter, setFilter, isMobile, onCloseDrawer }: IProps) {
   const onChange = ({ target: { value } }: RadioChangeEvent) => {
     setFilter(value);
+
+    if (isMobile && onCloseDrawer) {
+      onCloseDrawer();
+    }
   };
 
   if (isMobile) {
     return (
-      <Card>
-        <Radio.Group
-          value={filter}
-          options={filterTripItems}
-          onChange={onChange}
-        />
-      </Card>
+      <Radio.Group
+        value={filter}
+        options={[...filterTripItems, { value: "", label: "All" }]}
+        onChange={onChange}
+        vertical
+      />
     );
   }
 
