@@ -1,0 +1,1 @@
+export { default as FilterTrip } from "./ui/FilterTrip"

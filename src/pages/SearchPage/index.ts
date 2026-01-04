@@ -1,2 +1,2 @@
 export { SearchPageAsync } from "./ui/SearchPage.async";
-export type { ITrip } from "./model/types"
+export type { ITrip, SeatTypeCodeEnum } from "./model/types";

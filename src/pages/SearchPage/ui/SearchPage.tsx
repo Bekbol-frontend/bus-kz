@@ -14,11 +14,14 @@ import { SortTrip, SortTripEnum } from "@/entities/SortTrip";
 import { useCallback, useState } from "react";
 import { useResponsive } from "@/shared/lib/hooks/useResponsive";
 import SortAndDrawer from "./SortAndDrawer/SortAndDrawer";
+import { FilterTrip } from "@/entities/FilterTrip";
+import type { SeatTypeCodeEnum } from "../model/types";
 
 function SearchPage() {
   const { i18n } = useTranslation();
   const { from, to, date } = useStepParams();
   const [sort, setSort] = useState<SortTripEnum | "">("");
+  const [filter, setFilter] = useState<SeatTypeCodeEnum | "">("");
   const [openDrawer, setOpenDrawer] = useState(false);
   const { sm } = useResponsive();
 
@@ -63,14 +66,21 @@ function SearchPage() {
   return (
     <SearchPageLayout>
       <Row className={styles.rowWrapper} gutter={[15, 15]}>
+        {/* For Desktop */}
         {sm && (
           <Col span={6}>
-            <SortTrip sort={sort} setSort={setSort} />
+            <Flex vertical gap={15}>
+              <FilterTrip filter={filter} setFilter={setFilter} />
+              <SortTrip sort={sort} setSort={setSort} />
+            </Flex>
           </Col>
         )}
+
+        {/* For Mobile */}
         {!sm && (
           <Col span={24}>
-            <Flex>
+            <Flex justify="space-between" align="center" gap={15}>
+              <FilterTrip filter={filter} setFilter={setFilter} isMobile />
               <SortAndDrawer
                 showDrawer={showDrawer}
                 onCloseDrawer={onCloseDrawer}
@@ -82,7 +92,7 @@ function SearchPage() {
           </Col>
         )}
         <Col span={sm ? 18 : 24}>
-          <TripItems data={data.data} sort={sort} />
+          <TripItems data={data.data} sort={sort} filter={filter} />
         </Col>
       </Row>
     </SearchPageLayout>

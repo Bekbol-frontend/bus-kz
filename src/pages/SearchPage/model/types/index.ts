@@ -15,6 +15,7 @@ interface IBus {
   seatsCount: number;
   seatType: string;
   seatSchemeName: string;
+  seatTypeCode: SeatTypeCodeEnum;
 }
 
 export interface ITrip {
@@ -23,3 +24,5 @@ export interface ITrip {
   bus: IBus;
   price: number;
 }
+
+export type SeatTypeCodeEnum = "1" | "2";
