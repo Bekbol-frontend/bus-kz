@@ -18,13 +18,17 @@ import { FilterTrip } from "@/entities/FilterTrip";
 import type { SeatTypeCodeEnum } from "../model/types";
 import FilterAndDrawer from "./FilterAndDrawer/FilterAndDrawer";
 
+const GAP_DESKTOP = 15;
+const GAP_MOBILE = 5;
+
 function SearchPage() {
-  const { i18n } = useTranslation();
-  const { from, to, date } = useStepParams();
   const [sort, setSort] = useState<SortTripEnum | "">("");
   const [filter, setFilter] = useState<SeatTypeCodeEnum | "">("");
   const [openDrawer, setOpenDrawer] = useState(false);
   const [filterDrawer, setFilterDrawer] = useState(false);
+
+  const { from, to, date } = useStepParams();
+  const { i18n } = useTranslation();
   const { sm } = useResponsive();
 
   const showDrawer = useCallback(() => {
@@ -75,11 +79,11 @@ function SearchPage() {
 
   return (
     <SearchPageLayout>
-      <Row className={styles.rowWrapper} gutter={[15, 15]}>
+      <Row className={styles.rowWrapper} gutter={[GAP_DESKTOP, GAP_DESKTOP]}>
         {/* For Desktop */}
         {sm && (
-          <Col span={6}>
-            <Flex vertical gap={15}>
+          <Col span={7}>
+            <Flex vertical gap={10}>
               <FilterTrip filter={filter} setFilter={setFilter} />
               <SortTrip sort={sort} setSort={setSort} />
             </Flex>
@@ -89,7 +93,7 @@ function SearchPage() {
         {/* For Mobile */}
         {!sm && (
           <Col span={24}>
-            <Flex gap={5}>
+            <Flex gap={GAP_MOBILE}>
               <FilterAndDrawer
                 filter={filter}
                 setFilter={setFilter}
@@ -107,7 +111,7 @@ function SearchPage() {
             </Flex>
           </Col>
         )}
-        <Col span={sm ? 18 : 24}>
+        <Col span={sm ? 17 : 24}>
           <TripItems data={data.data} sort={sort} filter={filter} />
         </Col>
       </Row>
