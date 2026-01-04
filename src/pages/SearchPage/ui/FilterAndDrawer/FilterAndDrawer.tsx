@@ -3,6 +3,7 @@ import { FilterOutlined } from "@ant-design/icons";
 import { Button, Drawer } from "antd";
 import type { Dispatch, SetStateAction } from "react";
 import type { SeatTypeCodeEnum } from "../../model/types";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   showDrawer: () => void;
@@ -19,13 +20,15 @@ function FilterAndDrawer({
   filter,
   setFilter,
 }: IProps) {
+  const { t } = useTranslation();
+
   return (
     <>
       <Button type="primary" onClick={showDrawer} icon={<FilterOutlined />}>
-        Фильтровать
+        {t("Filter")}
       </Button>
 
-      <Drawer title="Filter trip" onClose={onCloseDrawer} open={openDrawer}>
+      <Drawer title={t("Filter")} onClose={onCloseDrawer} open={openDrawer}>
         <FilterTrip
           filter={filter}
           setFilter={setFilter}

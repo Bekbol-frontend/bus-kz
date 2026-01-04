@@ -2,16 +2,25 @@ import { SortTrip, SortTripEnum } from "@/entities/SortTrip";
 import { SortAscendingOutlined } from "@ant-design/icons";
 import { Button, Drawer } from "antd";
 import type { Dispatch, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 interface IProps {
   showDrawer: () => void;
   onCloseDrawer: () => void;
   openDrawer: boolean;
-  sort: "" | SortTripEnum
-  setSort: Dispatch<SetStateAction<"" | SortTripEnum>>
+  sort: "" | SortTripEnum;
+  setSort: Dispatch<SetStateAction<"" | SortTripEnum>>;
 }
 
-function SortAndDrawer({ showDrawer, onCloseDrawer, openDrawer, sort, setSort }:IProps) {
+function SortAndDrawer({
+  showDrawer,
+  onCloseDrawer,
+  openDrawer,
+  sort,
+  setSort,
+}: IProps) {
+  const { t } = useTranslation();
+
   return (
     <>
       <Button
@@ -19,10 +28,10 @@ function SortAndDrawer({ showDrawer, onCloseDrawer, openDrawer, sort, setSort }:
         onClick={showDrawer}
         icon={<SortAscendingOutlined />}
       >
-        Сортировать
+        {t("Sort")}
       </Button>
 
-      <Drawer title="Sort trip" onClose={onCloseDrawer} open={openDrawer}>
+      <Drawer title={t("Sort")} onClose={onCloseDrawer} open={openDrawer}>
         <SortTrip
           sort={sort}
           setSort={setSort}

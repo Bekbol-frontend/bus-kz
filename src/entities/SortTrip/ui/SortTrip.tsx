@@ -6,11 +6,11 @@ import {
   type RadioChangeEvent,
   Typography,
 } from "antd";
-import type { Dispatch, SetStateAction } from "react";
-import { sortOptionItems } from "../model/items";
-import type { SortTripEnum } from "../model/types";
+import { useMemo, type Dispatch, type SetStateAction } from "react";
+import { SortTripEnum } from "../model/types";
 import { CloseOutlined } from "@ant-design/icons";
 import styles from "./SortTrip.module.scss";
+import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 
@@ -22,6 +22,8 @@ interface IProps {
 }
 
 function SortTrip({ sort, setSort, isMobile, onCloseDrawer }: IProps) {
+  const { t } = useTranslation();
+
   const onChange = ({ target: { value } }: RadioChangeEvent) => {
     setSort(value);
     if (isMobile && onCloseDrawer) {
@@ -29,11 +31,33 @@ function SortTrip({ sort, setSort, isMobile, onCloseDrawer }: IProps) {
     }
   };
 
+  const options = useMemo(
+    () => [
+      {
+        label: t("By price, cheap first"),
+        value: SortTripEnum.PRICE,
+      },
+      {
+        label: t("Departure time"),
+        value: SortTripEnum.DEPARTURE_TIME,
+      },
+      {
+        label: t("Arrival time"),
+        value: SortTripEnum.ARRIVAL_TIME,
+      },
+      {
+        label: t("Number of seats"),
+        value: SortTripEnum.SEATS_COUNT,
+      },
+    ],
+    [t]
+  );
+
   if (isMobile) {
     return (
       <Radio.Group
         value={sort}
-        options={sortOptionItems}
+        options={options}
         onChange={onChange}
         vertical
       />
@@ -44,7 +68,7 @@ function SortTrip({ sort, setSort, isMobile, onCloseDrawer }: IProps) {
     <Card>
       <Flex align="center" justify="space-between" className={styles.flex}>
         <Title style={{ marginBottom: 0 }} level={5}>
-          Сортировать
+          {t("Sort")}
         </Title>
         <Button
           icon={<CloseOutlined />}
@@ -54,7 +78,7 @@ function SortTrip({ sort, setSort, isMobile, onCloseDrawer }: IProps) {
       </Flex>
       <Radio.Group
         value={sort}
-        options={sortOptionItems}
+        options={options}
         onChange={onChange}
         vertical
       />

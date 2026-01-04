@@ -12,5 +12,16 @@
   "Model": "Үлгі",
   "Seats count": "Орындар саны",
   "Price": "Бағасы",
-  "Price from": "Бастап"
+  "Price from": "Бастап",
+
+  "Sort": "Сұрыптау",
+  "By price, cheap first": "Бағасы бойынша, алдымен арзан",
+  "Departure time": "Шығу уақыты",
+  "Arrival time": "Келу уақыты",
+  "Number of seats": "Орындар саны",
+
+  "Filter": "Сүзгі",
+  "Sedentary": "Отыратын орын",
+  "Sleeper": "Жату орны",
+  "All": "Барлығы"
 }

@@ -12,5 +12,16 @@
   "Model": "Модель",
   "Seats count": "Количество мест",
   "Price": "Цена",
-  "Price from": "От"
+  "Price from": "От",
+
+  "Sort": "Сортировать",
+  "By price, cheap first": "По цене, сначала самые дешевые",
+  "Departure time": "Время отправления",
+  "Arrival time": "Время прибытия",
+  "Number of seats": "Количество мест",
+
+  "Filter": "Фильтровать",
+  "Sedentary": "Сидячий",
+  "Sleeper": "Спальное",
+  "All": "Все"
 }

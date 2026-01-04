@@ -4,7 +4,7 @@
   "To": "To",
   "Select date": "Select date",
   "Find a ticket": "Find a ticket",
- 
+
   "km": "km",
   "hours": "h",
   "minutes": "min",
@@ -13,5 +13,16 @@
   "Seats count": "Seats count",
   "Price": "Price",
 
-  "Price from": "From"
+  "Price from": "From",
+
+  "Sort": "Sort",
+  "By price, cheap first": "By price, cheap first",
+  "Departure time": "Departure time",
+  "Arrival time": "Arrival time",
+  "Number of seats": "Number of seats",
+
+  "Filter": "Filter",
+  "Sedentary": "Sedentary",
+  "Sleeper": "Sleeper",
+  "All": "All"
 }

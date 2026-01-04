@@ -8,9 +8,9 @@ import {
 } from "antd";
 import styles from "./FilterTrip.module.scss";
 import { CloseOutlined } from "@ant-design/icons";
-import { filterTripItems } from "../module/items";
 import type { SeatTypeCodeEnum } from "@/pages/SearchPage";
-import type { Dispatch, SetStateAction } from "react";
+import { useMemo, type Dispatch, type SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 
@@ -22,6 +22,16 @@ interface IProps {
 }
 
 function FilterTrip({ filter, setFilter, isMobile, onCloseDrawer }: IProps) {
+  const { t } = useTranslation();
+
+  const options = useMemo(
+    () => [
+      { value: "1", label: t("Sedentary") },
+      { value: "2", label: t("Sleeper") },
+    ],
+    [t]
+  );
+
   const onChange = ({ target: { value } }: RadioChangeEvent) => {
     setFilter(value);
 
@@ -34,7 +44,7 @@ function FilterTrip({ filter, setFilter, isMobile, onCloseDrawer }: IProps) {
     return (
       <Radio.Group
         value={filter}
-        options={[...filterTripItems, { value: "", label: "All" }]}
+        options={[...options, { value: "", label: t("All") }]}
         onChange={onChange}
         vertical
       />
@@ -45,7 +55,7 @@ function FilterTrip({ filter, setFilter, isMobile, onCloseDrawer }: IProps) {
     <Card>
       <Flex align="center" justify="space-between" className={styles.flex}>
         <Title style={{ marginBottom: 0 }} level={5}>
-          Фильтровать
+          {t("Filter")}
         </Title>
         <Button
           icon={<CloseOutlined />}
@@ -55,7 +65,7 @@ function FilterTrip({ filter, setFilter, isMobile, onCloseDrawer }: IProps) {
       </Flex>
       <Radio.Group
         value={filter}
-        options={filterTripItems}
+        options={options}
         onChange={onChange}
         vertical
       />
